@@ -1,0 +1,79 @@
+/* .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 320px);
+  width: 100%;
+  max-width: 1000px;
+  justify-content: center;
+  justify-items: center;
+  gap: 2rem;
+  margin: 0 auto;
+} */
+
+.card {
+  width: 20rem;
+  background-color: #e5f0ea;
+  border-radius: 0.75rem;
+  border: none;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+  transition: 0.5s;
+  box-sizing: border-box;
+}
+
+.card:hover {
+  box-shadow: 4px 8px 16px rgba(204, 238, 193, 0.2);
+}
+
+.image {
+  width: 6.25rem;
+  height: 8.93rem;
+  border-radius: 0.75rem;
+}
+
+.description {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 75%;
+  margin-top: 0.75rem;
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  color: rgb(20 83 45);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0.25rem;
+  margin-right: 1.25rem;
+  box-sizing: border-box;
+}
+
+.price {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: rgb(22 163 74);
+}
+
+.button {
+  width: 75%;
+  margin: 0 auto;
+  padding: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  margin-top: 0.75rem;
+  background-color: #fff;
+  border-radius: 0.75rem;
+  border: none;
+  box-sizing: border-box;
+}
+
+.button:hover {
+  background-color: #bbf7d0;
+}

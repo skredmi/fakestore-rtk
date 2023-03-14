@@ -1,0 +1,29 @@
+.app {
+  padding: 1.75rem 1.25rem 1.75rem 1.25rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  color: rgb(20 83 45);
+}
+
+.card {
+/*   display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem; */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 20rem);
+  width: 100%;
+  justify-items: center;
+  gap: 1rem;
+  margin: 0 auto;
+}
