@@ -1,7 +1,15 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem } from "../../store/cart/cartSlice";
 import styles from "./ProductItem.module.css";
 
-export const ProductItem = ({product}) => {
+export const ProductItem = ({ product }) => {
+  const dispatch = useDispatch();
+
+  const cart = useSelector((state) => state.cart);
+  const isExistsInCart = cart.some((i) => i.id === product.id);
+
+  const addProduct = () => dispatch(addItem(product));
 
   return (
     <div className={styles.card}>
@@ -10,7 +18,12 @@ export const ProductItem = ({product}) => {
         <div className={styles.title}>{product.title}</div>
         <div className={styles.price}>${product.price}</div>
       </div>
-      <button className={styles.button}>Add to cart</button>
+      <button
+        className={styles.button}
+        onClick={() => !isExistsInCart && addProduct()}
+      >
+        {isExistsInCart ? "Already in cart" : "Add to cart"}
+      </button>
     </div>
   );
 };

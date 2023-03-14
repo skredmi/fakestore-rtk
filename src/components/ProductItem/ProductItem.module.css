@@ -24,7 +24,7 @@
 }
 
 .card:hover {
-  box-shadow: 4px 8px 16px rgba(204, 238, 193, 0.2);
+  transform: scale(1.05);
 }
 
 .image {
@@ -72,6 +72,8 @@
   border-radius: 0.75rem;
   border: none;
   box-sizing: border-box;
+  cursor: pointer;
+  transition: 0.5s;
 }
 
 .button:hover {
