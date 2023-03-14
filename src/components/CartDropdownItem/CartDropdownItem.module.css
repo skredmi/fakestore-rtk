@@ -1,0 +1,49 @@
+.container {
+  display: flex;
+  align-items: center;
+  width: 75%;
+}
+
+.image {
+  width: 2.5rem;
+  height: 3rem;
+  border-radius: 0.5rem;
+  margin-right: 1rem;
+  box-sizing: border-box;
+}
+
+.description {
+  width: 75%;
+  margin-right: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.title {
+  font-weight: 600;
+  color: rgb(20 83 45);
+  margin-bottom: 0.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.price {
+  color: rgb(22 101 52);
+}
+
+.button {
+  width: 2rem;
+  height: 2rem;
+  color: #fff;
+  background-color: rgb(22 101 52);
+  border-radius: 50%;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.button:hover {
+  transform: scale(1.3);
+}

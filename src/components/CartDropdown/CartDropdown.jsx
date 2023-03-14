@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { BsCart, BsTrash, BsX } from "react-icons/bs";
+import { BsCart, BsX } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { removeItem } from "../../store/cart/cartSlice";
+import { CartDropdownItem } from "../CartDropdownItem/CartDropdownItem";
+import { OrderButton } from "../OrderButton/OrderButton";
 import styles from "./CartDropdown.module.css";
 
 export const CartDropdown = () => {
@@ -43,25 +45,13 @@ export const CartDropdown = () => {
             <>
               {cart?.map((product) => (
                 <div key={`Cart item: ${product.id}`} className={styles.card}>
-                  <div className={styles.container}>
-                    <img
-                      src={product.image}
-                      alt={product.title}
-                      className={styles.image}
-                    />
-                    <div className={styles.description}>
-                      <div className={styles.title}>{product.title}</div>
-                      <div className={styles.price}>${product.price}</div>
-                    </div>
-                  </div>
-                  <button
-                    className={styles.button}
-                    onClick={() => removeProduct(product.id)}
-                  >
-                    <BsTrash />
-                  </button>
+                  <CartDropdownItem
+                    product={product}
+                    removeProduct={removeProduct}
+                  />
                 </div>
               ))}
+              <OrderButton />
             </>
           ) : (
             <div>Cart is empty</div>
