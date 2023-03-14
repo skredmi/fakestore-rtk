@@ -6,7 +6,7 @@ export const Message = () => {
   return (
     <>
       <h1 className={styles.text}>Thanks for order!</h1>
-      <Link to="/">
+      <Link to="/fakestore-rtk">
       <button className={styles.backButton}>Back to catalog</button>
       </Link>
     </>
