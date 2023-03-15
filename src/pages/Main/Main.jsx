@@ -6,13 +6,16 @@ import { CartDropdown } from "../../components/CartDropdown/CartDropdown";
 import { ProductItem } from "../../components/ProductItem/ProductItem";
 import { PopupProductItem } from "../../components/PopupProductItem/PopupProductItem";
 import { SelectCategories } from "../../components/SelectCategories/SelectCategories";
+import { useDispatch, useSelector } from "react-redux";
+import { clearFilter, setFilter } from "../../store/filter/filterSlice";
 
 export const Main = () => {
   const { data, isLoading, error } = useGetProductsQuery();
+  const dispatch = useDispatch();
+  const filteredCards = useSelector((state) => state.filter[0]);
 
   const [isOpenCardPopup, setIsOpenCardPopup] = useState(false);
   const [selectedCard, setSelectedCard] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState();
 
   const handleCardClick = (product) => {
     setIsOpenCardPopup(!isOpenCardPopup);
@@ -25,15 +28,18 @@ export const Main = () => {
   };
 
   const handleChangeCategory = (evt) => {
-    setSelectedCategory(evt.target.value);
+    dispatch(clearFilter());
+    const filteredCategory = data?.filter(
+      (item) => item.category === evt.target.value
+    );
+    dispatch(setFilter(filteredCategory));
   };
-
   const getFilteredProduct = () => {
-    if (!selectedCategory || selectedCategory === "all") return data;
-    return data.filter((item) => item.category === selectedCategory);
+    console.log(filteredCards);
+    if (!filteredCards || !filteredCards.length) return data;
+    return filteredCards;
   };
-
-  const filteredProduct = useMemo(getFilteredProduct, [selectedCategory, data]);
+  const filteredProduct = useMemo(getFilteredProduct, [filteredCards, data]);
 
   const override = {
     display: "block",

@@ -10,7 +10,7 @@ export const SelectCategories = ({ handleChangeCategory }) => {
       <option defaultValue hidden>
         select a category
       </option>
-      <option value="all">all categories</option>
+      <option value="">all categories</option>
       {data?.map((item, index) => (
         <option key={index} value={item}>
           {item}
