@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../../store/cart/cartSlice";
 import styles from "./ProductItem.module.css";
 
-export const ProductItem = ({ product }) => {
+export const ProductItem = ({ product, handleCardClick }) => {
   const dispatch = useDispatch();
 
   const cart = useSelector((state) => state.cart);
@@ -13,10 +13,15 @@ export const ProductItem = ({ product }) => {
 
   return (
     <div className={styles.card}>
-      <img className={styles.image} src={product.image} alt={product.title} />
-      <div className={styles.description}>
-        <div className={styles.title}>{product.title}</div>
-        <div className={styles.price}>${product.price}</div>
+      <div
+        className={styles.container}
+        onClick={() => handleCardClick(product)}
+      >
+        <img className={styles.image} src={product.image} alt={product.title} />
+        <div className={styles.description}>
+          <div className={styles.title}>{product.title}</div>
+          <div className={styles.price}>${product.price}</div>
+        </div>
       </div>
       <button
         className={styles.button}

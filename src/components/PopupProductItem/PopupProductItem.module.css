@@ -1,0 +1,109 @@
+.popup {
+  width: 100%;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.5s linear;
+}
+
+.popup.active {
+  display: flex;
+  visibility: visible;
+  opacity: 1;
+}
+
+.content {
+  width: 50%;
+  margin: 0 auto;
+  padding: 1.75rem 1.25rem;
+  border-radius: 0.75rem;
+  border: none;
+  background-color: #e5f0ea;
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.topContent {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.imageContent {
+  width: 8.75rem;
+  height: 9.2rem;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+}
+
+.infoContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.titleContent {
+  max-width: 31.25rem;
+  font-size: 1.2rem;
+  line-height: 1.25rem;
+  font-weight: 800;
+  color: rgb(20 83 45);
+}
+
+.descriptionContent {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  color: rgb(22 101 52);
+}
+
+.priceContent {
+  font-size: 1rem;
+  line-height: 1.25rem;
+  font-weight: 700;
+  color: rgb(22 163 74);
+}
+
+.button {
+  width: 2rem;
+  height: 2rem;
+  color: #fff;
+  background-color: rgb(22 101 52);
+  border-radius: 50%;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: 0.3s;
+  position: absolute;
+  top: -1.75rem;
+  right: -1.75rem;
+}
+
+.button:hover {
+  transform: scale(1.1);
+}
+
+.rateContent {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
