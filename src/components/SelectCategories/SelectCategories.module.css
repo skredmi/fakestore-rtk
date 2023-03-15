@@ -1,0 +1,24 @@
+.select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 10rem;
+  background-color: transparent;
+  border-radius: 1rem;
+  border: 0.2rem solid #cdfcdd;
+  padding: 0.25rem;
+  box-sizing: border-box;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  outline: none;
+  text-align: center;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+select::-ms-expand {
+  display: none;
+}

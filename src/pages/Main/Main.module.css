@@ -11,6 +11,15 @@
   color: rgb(20 83 45);
 }
 
+.selector {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin-bottom: 2rem;
+  padding-right: 9.5rem;
+  box-sizing: border-box;
+}
+
 .card {
   display: grid;
   grid-template-columns: repeat(auto-fill, 20rem);
