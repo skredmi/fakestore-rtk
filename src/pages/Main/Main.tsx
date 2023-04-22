@@ -65,7 +65,14 @@ export const Main = () => {
         <FadeLoader color="rgb(20 83 45)" cssOverride={override} />
       ) : error ? (
         <div className={styles.error}>
-          {(error as any).originalStatus} {(error as any).status}
+          {
+            (error as unknown as { originalStatus: number; status: number })
+              .originalStatus
+          }
+          {
+            (error as unknown as { originalStatus: number; status: number })
+              .status
+          }
         </div>
       ) : (
         <div className={styles.card}>
