@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import { ChangeEvent, useMemo, useState } from "react";
 import { FadeLoader } from "react-spinners";
 import styles from "./Main.module.css";
 import { useGetProductsQuery } from "../../store/product/productApi";
@@ -6,20 +6,26 @@ import { CartDropdown } from "../../components/CartDropdown/CartDropdown";
 import { ProductItem } from "../../components/ProductItem/ProductItem";
 import { PopupProductItem } from "../../components/PopupProductItem/PopupProductItem";
 import { SelectCategories } from "../../components/SelectCategories/SelectCategories";
-import { useDispatch, useSelector } from "react-redux";
 import { clearFilter, setFilter } from "../../store/filter/filterSlice";
+import { useTypedDispatch, useTypedSelector } from "../../hooks/hooks";
+import { ICart } from "../../types/Cart.types";
 
 export const Main = () => {
-  const { data, isLoading, error } = useGetProductsQuery();
-  const dispatch = useDispatch();
-  const filteredCards = useSelector((state) => state.filter[0]);
+  const { data, isLoading, error } = useGetProductsQuery(null);
+
+  const dispatch = useTypedDispatch();
+  const filteredCards: ICart[] | undefined = useTypedSelector(
+    (state) => state.filter
+  );
 
   const [isOpenCardPopup, setIsOpenCardPopup] = useState(false);
-  const [selectedCard, setSelectedCard] = useState([]);
+  const [selectedCard, setSelectedCard] = useState<ICart[]>([]);
 
-  const handleCardClick = (product) => {
-    setIsOpenCardPopup(!isOpenCardPopup);
-    setSelectedCard(product);
+  const handleCardClick = (product: ICart[]) => {
+    if (product && product.length > 0) {
+      setIsOpenCardPopup(!isOpenCardPopup);
+      setSelectedCard(product);
+    }
   };
 
   const handleCloseCardPopup = () => {
@@ -27,20 +33,20 @@ export const Main = () => {
     setSelectedCard([]);
   };
 
-  const handleChangeCategory = (evt) => {
+  const handleChangeCategory = (evt: ChangeEvent<HTMLSelectElement>) => {
     dispatch(clearFilter());
-    const filteredCategory = data?.filter(
-      (item) => item.category === evt.target.value
-    );
+    const filteredCategory: ICart[] =
+      data?.filter((item) => item.category === evt.target.value) || [];
+
     dispatch(setFilter(filteredCategory));
   };
+
   const getFilteredProduct = () => {
-    console.log(filteredCards);
-    if (!filteredCards || !filteredCards.length) return data;
+    if (!filteredCards?.length) return data;
     return filteredCards;
   };
   const filteredProduct = useMemo(getFilteredProduct, [filteredCards, data]);
-
+  console.log();
   const override = {
     display: "block",
     margin: "0 auto",
@@ -59,11 +65,11 @@ export const Main = () => {
         <FadeLoader color="rgb(20 83 45)" cssOverride={override} />
       ) : error ? (
         <div className={styles.error}>
-          {error.originalStatus} {error.status}
+          {(error as any).originalStatus} {(error as any).status}
         </div>
       ) : (
         <div className={styles.card}>
-          {filteredProduct?.map((product) => (
+          {filteredProduct?.flat()?.map((product: ICart) => (
             <ProductItem
               key={product.id}
               product={product}

@@ -1,20 +1,30 @@
-import { React } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { ReactElement } from "react";
 import styles from "./App.module.css";
 import { Main } from "./pages/Main/Main";
 import { Message } from "./pages/Message/Message";
 
-function App() {
+interface ExactRouteProps {
+  exact: boolean;
+  path: string;
+  element: ReactElement;
+}
+
+const MainRoute: ExactRouteProps = {
+  exact: true,
+  path: "/fakestore-rtk",
+  element: <Main />,
+};
+
+export const App = (): ReactElement => {
   return (
     <Router>
       <div className={styles.app}>
         <Routes>
-          <Route exact path="/fakestore-rtk" element={<Main />} />
+          <Route {...MainRoute} />
           <Route path="/fakestore-rtk/order" element={<Message />} />
         </Routes>
       </div>
     </Router>
   );
-}
-
-export default App;
+};

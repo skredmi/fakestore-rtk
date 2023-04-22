@@ -1,14 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BsCart, BsX } from "react-icons/bs";
-import { useDispatch, useSelector } from "react-redux";
 import { removeItem } from "../../store/cart/cartSlice";
 import { CartDropdownItem } from "../CartDropdownItem/CartDropdownItem";
 import { OrderButton } from "../OrderButton/OrderButton";
 import styles from "./CartDropdown.module.css";
+import { useTypedDispatch, useTypedSelector } from "../../hooks/hooks";
 
 export const CartDropdown = () => {
-  const cart = useSelector((state) => state.cart);
-  const dispatch = useDispatch();
+  const cart = useTypedSelector((state) => state.cart);
+  const dispatch = useTypedDispatch();
 
   const [isShow, setIsShow] = useState(false);
   const ref = useRef(null);
@@ -17,12 +17,12 @@ export const CartDropdown = () => {
     setIsShow(!isShow);
   };
 
-  const removeProduct = (id) => {
+  const removeProduct = (id: number) => {
     dispatch(removeItem({ id }));
   };
 
-  const handleClickOutside = (evt) => {
-    if (ref.current && !ref.current.contains(evt.target)) {
+  const handleClickOutside = (evt: MouseEvent) => {
+    if (ref.current && !(ref.current as any).contains(evt.target)) {
       setIsShow(false);
     }
   };

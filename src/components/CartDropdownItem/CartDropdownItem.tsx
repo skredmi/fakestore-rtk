@@ -1,8 +1,13 @@
-import React from "react";
+import { ICart } from "../../types/Cart.types";
 import styles from "./CartDropdownItem.module.css";
 import { BsTrash } from "react-icons/bs";
 
-export const CartDropdownItem = ({ product, removeProduct }) => {
+interface ICartDropdown {
+  product: ICart;
+  removeProduct: (id: number) => void;
+}
+
+export const CartDropdownItem = ({ product, removeProduct }: ICartDropdown) => {
   return (
     <>
       <div className={styles.container}>
